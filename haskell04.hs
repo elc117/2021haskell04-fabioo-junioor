@@ -3,14 +3,22 @@
 
 
 {-1 A vacinação contra COVID19 no Brasil está acontecendo por grupos prioritários. As equipes responsáveis pelas ações de vacinação devem registrar em um sistema cada dose de vacina aplicada, classificando cada indivíduo em um dos grupos previstos. No caso de idosos, este grupo prioritário é organizado em 5 faixas etárias: de 60 a 64 anos, de 65 a 69 anos. de 70 a 74 anos, de 75 a 79 anos e de 80 anos ou mais. No sistema, essas faixas são identificadas, respectivamente, pelas siglas "IDO64", "IDO69", "IDO74", "IDO79" e "IDO80". Sabendo disso, crie uma função faixaIdoso :: Int -> String que receba uma idade e retorne o código da faixa correspondente. Caso a idade não se enquadre em nenhuma das faixas do grupo prioritário, o código será "ND" (não definido).-}
+faixaIdoso :: Int -> String
+faixaIdoso idade | idade >= 60 && idade < 65 = "IDO64" | idade >= 65 && idade < 70 = "IDO69"
+                | idade >= 70 && idade < 75 = "IDO75" | idade >= 75 && idade < 80 = "IDO79"
+                | idade >= 80 = "IDO80" | otherwise = "ND"
 
 
 {-2 Usando list comprehension, crie uma função classifIdosos :: [(String,Int)] -> [(String,Int,String)] que receba uma lista de tuplas contendo nome e idade, e retorne uma lista de tuplas com nome, idade e o código da faixa correspondente (faixaIdoso). Por exemplo:
 > classifIdosos [("joao",65), ("maria", 64)]
 [("joao",65,"IDO69"),("maria",64,"IDO64")]-}
+classifIdosos :: [(String,Int)] -> [(String,Int,String)]
+classifIdosos ls = [(nome,idade, faixaIdoso idade) | (nome,idade) <- ls]
 
 
 {-3 Resolva o exercício anterior com função de alta ordem, sem usar list comprehension. O novo nome da função será classifIdosos'.-}
+classifIdosos' :: [(String,Int)] -> [(String,Int,String)]
+classifIdosos' ls = map (\(x,y) -> (x, y, faixaIdoso y)) ls
 
 
 {-4 Suponha que uma cor seja representada por uma tupla (Int,Int,Int), contendo valores (R=red,G=Green,B=blue). Considerando isso, crie uma função strColor :: (Int,Int,Int) -> String que receba uma tupla representando uma cor (R=red,G=Green,B=blue) e retorne uma string no formato "rgb(R,G,B)". Por exemplo:
