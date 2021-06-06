@@ -74,6 +74,3 @@ main = do
         palette = rgbPalette nrects
         nrects = 10
         (w,h) = (1500,500) -- width,height da imagem SVG
-
-
-
