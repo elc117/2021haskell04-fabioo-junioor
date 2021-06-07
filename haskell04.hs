@@ -32,11 +32,11 @@ strColor (r,g,b) = "rgb"++ "("++ show r ++ "," ++ show g ++ "," ++ show b ++ ")"
 > genCircs 5 (10,10) 2
 [(10,10,2),(14,10,2),(18,10,2),(22,10,2),(26,10,2)]-}
 genCircs :: Int -> (Int,Int) -> Int -> [(Int,Int,Int)]
-genCircs q (cx,cy) raio = take q [(x,cy,raio) | x <- (iterate(3*) cx)]
+genCircs q (cx,cy) raio = take q [(x,cy,raio) | x <- (iterate(+2) cx)]
 
 
 {-6 Suponha novamente que uma cor seja representada por uma tupla (Int,Int,Int), contendo valores (R=red,G=Green,B=blue). Sabendo disso, crie uma função genReds :: Int -> [(Int,Int.Int)] que receba um número N e gere uma lista com N tons de vermelho calculados (não enumere cada um dos valores literalmente com números "hard-coded"). Você pode repetir valores, se desejar. Abaixo está um exemplo de uso dessa função:
 > genReds 5
 [(80,0,0),(90,0,0),(100,0,0),(110,0,0),(120,0,0)]-}
 genReds :: Int -> [(Int,Int,Int)]
-genReds list = take list [(z,0,0) | z <- (iterate(\x -> x*2) list)]
+genReds list = take list [(z,0,0) | z <- (iterate(\x -> x*2) list)] 
